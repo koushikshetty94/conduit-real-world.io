@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header(props) {
     return (
         <div className="container" >
             <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -15,28 +15,62 @@ function Header() {
                         <span aria-hidden="true"></span>
                     </a>
                 </div>
-
-                <div className="navbar-end">
-                    <div className="navbar-item">
-                        <div id="navbarBasicExample" className="navbar-menu">
-                            <div className="navbar-start">
-                                <Link to="/" className="navbar-item">
-                                    Home
+                {
+                    props.isLoggedin ? <div className="navbar-end">
+                        <div className="navbar-item">
+                            <div id="navbarBasicExample" className="navbar-menu">
+                                <div className="navbar-start">
+                                    <Link to="/" className="navbar-item">
+                                        Home
       </Link>
 
-                            </div>
+                                </div>
+                                <div className="navbar-start">
+                                    <Link to="/newarticle" className="navbar-item">
+                                        New Article
+      </Link>
 
-                            <div className="buttons">
-                                <Link to="/register" className="button is-primary">
-                                    <strong>Sign up</strong>
-                                </Link>
-                                <Link to="/login" className="button is-light">
-                                    Log in
-          </Link>
+                                </div>
+                                <div className="navbar-start">
+                                    <Link to="/settings" className="navbar-item">
+                                        Settings
+      </Link>
+
+                                </div>
+                                <div className="navbar-start">
+                                    <Link to="/" className="navbar-item">
+                                        profilename
+      </Link>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                        :
+                        <div className="navbar-end">
+                            <div className="navbar-item">
+                                <div id="navbarBasicExample" className="navbar-menu">
+                                    <div className="navbar-start">
+                                        <Link to="/" className="navbar-item">
+                                            Home
+      </Link>
+
+                                    </div>
+
+                                    <div className="buttons">
+                                        <Link to="/register" className="button is-primary">
+                                            <strong>Sign up</strong>
+                                        </Link>
+                                        <Link to="/login" className="button is-light">
+                                            Log in
+          </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                }
+
             </nav>
         </div>
     )
