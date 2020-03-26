@@ -14,13 +14,14 @@ import Settings from "./settings/settings";
 
 // import Profileindex from "./profile/index";
 
-function Auth() {
+function Auth(props) {
     return <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/article/:slug" component={Article} />
         <Route exact path="/newarticle" component={Newarticle} />
-        <Route exact path="/settings" component={Settings} />
+        <Route exact path="/settings" render={()=> <Settings updateisLoggedin={props.updateisLoggedin} /> } />
         <Route path="/*" render={() => <h1>page not found</h1>} />
+        {/* <Route path="/logout" component={Home}/> */}
     </Switch>
 }
 function NoAuth(props) {
@@ -64,7 +65,7 @@ class App extends React.Component {
             <div>
                 <Header isLoggedin={this.state.isLoggedin} />
                 {
-                    this.state.isLoggedin ? <Auth /> : <NoAuth updateisLoggedin={this.updateisLoggedin} />
+                    this.state.isLoggedin ? <Auth updateisLoggedin={this.updateisLoggedin}/> : <NoAuth updateisLoggedin={this.updateisLoggedin} />
                 }
             </div>
         )
