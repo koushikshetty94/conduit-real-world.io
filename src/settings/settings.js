@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component,useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 export default class Settings extends Component {
+
+    
     logout = () => {
         localStorage.clear();
         this.props.updateisLoggedin(false);

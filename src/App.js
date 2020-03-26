@@ -21,7 +21,6 @@ function Auth(props) {
         <Route exact path="/newarticle" component={Newarticle} />
         <Route exact path="/settings" render={()=> <Settings updateisLoggedin={props.updateisLoggedin} /> } />
         <Route path="/*" render={() => <h1>page not found</h1>} />
-        {/* <Route path="/logout" component={Home}/> */}
     </Switch>
 }
 function NoAuth(props) {
