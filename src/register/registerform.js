@@ -7,11 +7,11 @@ function Register(props) {
     let username = useRef(null);
     let password = useRef(null);
 
-    console.log(email, username, password);
+    // console.log(email, username, password);
 
     const handleSignup = (e) => {
         e.preventDefault();
-        console.log("hi");
+        // console.log("hi");
         fetch('https://conduit.productionready.io/api/users',
             {
                 method: "POST",
@@ -24,7 +24,7 @@ function Register(props) {
                 })
             }).then(res => res.json()).then(user => {
                 if(user.errors){
-                    console.log(user.errors);
+                    // console.log(user.errors);
                 props.history.push("/register");
                 }else{
                     props.history.push("/");

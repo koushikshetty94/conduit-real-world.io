@@ -18,14 +18,15 @@ function Login(props) {
                     { email: email.current.value, password: password.current.value}
             })
         }).then(res => res.json())
-            .then(user => {
-                if (user.errors) {
-                    console.log(user.errors);
+            .then(userInfo => {
+                if (userInfo.errors) {
+                    // console.log(user.errors);
                     props.updateisLoggedin(false);
                 }
                 else {
                     props.updateisLoggedin(true);
                     props.history.push('/');
+                    localStorage.setItem('conduit-token',userInfo.user.token);
                 }
             })
             // .catch(err => console.log(err));
