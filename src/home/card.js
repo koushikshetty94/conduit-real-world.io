@@ -6,7 +6,6 @@ class Card extends React.Component {
         super(props);
     }
     render() {
-        console.log(this.props.article);
         return (
             <div className="container">
                 <div>

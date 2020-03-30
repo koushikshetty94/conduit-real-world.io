@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Header(props) {
+    console.log("hi");
     return (
         <div className="container" >
             <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -39,7 +40,8 @@ function Header(props) {
                                 </div>
                                 <div className="navbar-start">
                                     <Link to="/" className="navbar-item">
-                                        profilename
+                                        {props.user ? props.user.username : "profile"}
+                                      
       </Link>
 
                                 </div>

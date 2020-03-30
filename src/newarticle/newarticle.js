@@ -10,7 +10,6 @@ export default function Newarticle() {
 
     const addNewArticle = (e) => {
         e.preventDefault();
-        console.log(title,description,body,tags)
         fetch("https://conduit.productionready.io/api/articles", 
         { method: "POST",
           headers: {

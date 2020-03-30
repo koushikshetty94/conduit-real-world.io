@@ -16,35 +16,41 @@ import Settings from "./settings/settings";
 
 function Auth(props) {
     return <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/article/:slug" component={Article} />
-        <Route exact path="/newarticle" component={Newarticle} />
-        <Route exact path="/settings" render={()=> <Settings updateisLoggedin={props.updateisLoggedin} /> } />
-        <Route path="/*" render={() => <h1>page not found</h1>} />
-    </Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/article/:slug" component={Article} />
+            <Route exact path="/newarticle" component={Newarticle} />
+            <Route exact path="/settings" render={() => <Settings updateisLoggedin={props.updateisLoggedin} />} />
+            <Route path="/*" render={() => <h1>page not found</h1>} />
+         </Switch>
 }
 function NoAuth(props) {
     return <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" render={() => <Login updateisLoggedin={props.updateisLoggedin} />} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/article/:slug" component={Article} />
-        <Route exact path="/tags/:name" component={Tag} />
-        <Route path="/*" render={() => <h1>page not found</h1>} />
-    </Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" render={() => <Login updateisLoggedin={props.updateisLoggedin} />} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/article/:slug" component={Article} />
+            <Route exact path="/tags/:name" component={Tag} />
+            <Route path="/*" render={() => <h1>page not found</h1>} />
+         </Switch>
 }
 
 class App extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedin: false
+            isLoggedin: false,
+            loggedInUser : null
         };
     }
-    updateisLoggedin = value => {
+
+
+    updateisLoggedin = (value)=> {
         console.log("hi");
-        this.setState({ isLoggedin: value });
+        this.setState({ isLoggedin: value});
     }
+    
+
     componentDidMount() {
         if (localStorage["conduit-token"]) {
             // check the token
@@ -53,7 +59,8 @@ class App extends React.Component {
                     authorization: `Token ${localStorage["conduit-token"]}`
                 }
             }).then(res => res.json()).then(user => {
-                this.setState({ isLoggedin: true });
+                
+                this.setState({ isLoggedin: true, loggedInUser : user });
             })
         }
     }
@@ -62,9 +69,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Header isLoggedin={this.state.isLoggedin} />
+                <Header isLoggedin={this.state.isLoggedin} user={this.state.loggedInUser && this.state.loggedInUser.user} />
                 {
-                    this.state.isLoggedin ? <Auth updateisLoggedin={this.updateisLoggedin}/> : <NoAuth updateisLoggedin={this.updateisLoggedin} />
+                    this.state.isLoggedin ? <Auth updateisLoggedin={this.updateisLoggedin} /> : <NoAuth updateisLoggedin={this.updateisLoggedin} />
                 }
             </div>
         )

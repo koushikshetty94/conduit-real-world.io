@@ -20,7 +20,6 @@ function Login(props) {
         }).then(res => res.json())
             .then(userInfo => {
                 if (userInfo.errors) {
-                    // console.log(user.errors);
                     props.updateisLoggedin(false);
                 }
                 else {
@@ -29,7 +28,6 @@ function Login(props) {
                     localStorage.setItem('conduit-token',userInfo.user.token);
                 }
             })
-            // .catch(err => console.log(err));
     }
 
     return (

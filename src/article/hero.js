@@ -5,7 +5,6 @@ export default class Hero extends React.Component {
         super(props);
     }
     render() {
-        console.log(this.props.articleInfo, "from hero");
         return (
             <div>
                 {this.props.articleInfo && this.props.articleInfo ? <section class="hero is-primary has-background-black	">

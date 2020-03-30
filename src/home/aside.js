@@ -6,7 +6,6 @@ class Aside extends React.Component {
         super(props);
     }
     render() {
-        console.log(this.props.tag)
         return (
             <div>
                 <Link to={`/tags/${this.props.tag}`}>

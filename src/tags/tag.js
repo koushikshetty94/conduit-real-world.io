@@ -17,8 +17,6 @@ class Tag extends React.Component {
     }
 
     render() {
-        console.log(this.state.articles);
-        // console.log(this.state.articles.title);
         return <div>
             <Hero />
             {this.state.articles && this.state.articles.map(article => {

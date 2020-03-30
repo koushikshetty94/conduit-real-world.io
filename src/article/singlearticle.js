@@ -5,7 +5,6 @@ class Singlearticle extends React.Component {
         super(props);
     }
     render() {
-        console.log(this.props.articleInfo);
         return (
             <div className="container">
                 {this.props.articleInfo && this.props.articleInfo ? <div className="card">
