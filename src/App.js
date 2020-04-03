@@ -8,6 +8,7 @@ import Article from "./article/article";
 import Tag from "./tags/tag";
 import Newarticle from "./newarticle/newarticle";
 import Settings from "./settings/settings";
+import Profileindex from "./profile/profileindex";
 
 // // import Index from "./loggedinuser/index";
 // // import Newarticle from "./newarticle/newarticle";
@@ -19,7 +20,8 @@ function Auth(props) {
             <Route exact path="/" component={Home} />
             <Route exact path="/article/:slug" component={Article} />
             <Route exact path="/newarticle" component={Newarticle} />
-            <Route exact path="/settings" render={() => <Settings updateisLoggedin={props.updateisLoggedin} />} />
+            <Route exact path="/settings" render={() => <Settings updateisLoggedin={props.updateisLoggedin} user={props.user}  />} />
+            <Route path="/profile" render={() => <Profileindex user={props.user}/>} />
             <Route path="/*" render={() => <h1>page not found</h1>} />
          </Switch>
 }
@@ -71,7 +73,7 @@ class App extends React.Component {
             <div>
                 <Header isLoggedin={this.state.isLoggedin} user={this.state.loggedInUser && this.state.loggedInUser.user} />
                 {
-                    this.state.isLoggedin ? <Auth updateisLoggedin={this.updateisLoggedin} /> : <NoAuth updateisLoggedin={this.updateisLoggedin} />
+                    this.state.isLoggedin ? <Auth updateisLoggedin={this.updateisLoggedin} user={this.state.loggedInUser && this.state.loggedInUser.user} /> : <NoAuth updateisLoggedin={this.updateisLoggedin} />
                 }
             </div>
         )

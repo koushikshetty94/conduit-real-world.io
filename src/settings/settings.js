@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 export default function Settings(props) {
 
+    console.log(props.user);
+
     let email = useRef(null);
     let bio = useRef(null);
     let image = useRef(null);
@@ -36,19 +38,19 @@ export default function Settings(props) {
                 <div className="container">
                     <div>Your Settings</div>
                     <div class="control">
-                        <input class="input" type="text" ref={image} placeholder="Url of Profile picture" />
+                        <input class="input" type="text" ref={image} placeholder={props.user.image} />
                     </div>
                     <div class="control">
-                        <input class="input" type="text" ref={username} placeholder="username" />
+                        <input class="input" type="text" ref={username} placeholder={props.user.username} />
                     </div>
                     <div class="control">
-                        <input class="input" type="text" ref={bio} placeholder="short bio about you" />
+                        <input class="input" type="text" ref={bio} placeholder={props.user.bio} />
                     </div>
                     <div class="control">
-                        <input class="input" type="text" ref={email} placeholder="E-mail" />
+                        <input class="input" type="text" ref={email} placeholder={props.user.email} />
                     </div>
                     <div class="control">
-                        <input class="input" type="text" ref={password} placeholder="Password" />
+                        <input class="input" type="password" ref={password} placeholder={props.user.password} />
                     </div>
                     <div class="control is-pulled-right	">
                         <button onClick={(e)=>handleSubmit(e)} type="submit" class="button is-primary">Submit</button>

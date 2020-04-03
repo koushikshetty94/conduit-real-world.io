@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Header(props) {
-    console.log("hi");
+    console.log("hi",props.user);
+
     return (
+    
         <div className="container" >
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
@@ -39,7 +41,7 @@ function Header(props) {
 
                                 </div>
                                 <div className="navbar-start">
-                                    <Link to="/" className="navbar-item">
+                                    <Link to="/profile" className="navbar-item">
                                         {props.user ? props.user.username : "profile"}
                                       
       </Link>

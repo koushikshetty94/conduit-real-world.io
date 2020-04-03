@@ -14,18 +14,24 @@ class Home extends React.Component {
     }
     componentDidMount() {
         let tags = "https://conduit.productionready.io/api/tags";
-        let articles = "https://conduit.productionready.io/api/articles?limit=10&offset=0";
-        fetch(articles)
-            .then(res => res.json())
-            .then(({ articles }) => {
-                this.setState({ articles });
-            });
+       this.updateArticles()
         fetch(tags)
             .then(res => res.json())
             .then(({ tags }) => {
                 this.setState({ tags });
             });
     }
+
+    updateArticles = () => {
+        let articles = "https://conduit.productionready.io/api/articles?limit=10&offset=0";
+        fetch(articles)
+            .then(res => res.json())
+            .then(({ articles }) => {
+                this.setState({ articles });
+            });
+
+    }
+    
 
     render() {
         return (
@@ -37,7 +43,7 @@ class Home extends React.Component {
                         {this.state.articles && this.state.articles.map(article => {
                             return (
                                 <div>
-                                    <Card article={article} />
+                                    <Card article={article} updateArticles ={this.updateArticles}  />
                                 </div>
                             )
                         })}
